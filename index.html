@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- Encodage & viewport -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- SEO de base -->
+    <title>ParentFacile</title>
+    <meta
+      name="description"
+      content="ParentFacile – Tout savoir et bien préparer le futur quotidien des parents."
+    />
+    <meta name="robots" content="index,follow" />
+
+    <!-- Couleurs système -->
+    <meta name="theme-color" content="#5784BA" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1828" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ParentFacile" />
+    <meta property="og:description" content="Outils, ressources et organisation pour les parents." />
+    <meta property="og:image" content="/og.png" />
+    <!-- Renseigne ton domaine en prod -->
+    <meta property="og:url" content="https://www.parentfacile.fr" />
+
+    <!-- Favicons & icônes (placées dans /public) -->
+    <link rel="icon" href="/fav.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/fav.png" sizes="512x512" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+
+    <!-- Manifest PWA -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Améliorations iOS (optionnel) -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  </head>
+
+  <body>
+    <noscript>Cette application nécessite JavaScript pour fonctionner correctement.</noscript>
+    <div id="root"></div>
+
+    <!-- Entrée Vite (module = defer par défaut) -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+

@@ -1,0 +1,1 @@
+export default function Register(){return <section className='max-w-md mx-auto px-4 py-12'><h1 className='text-2xl font-bold mb-4'>Créer un compte</h1><p className='text-slate-600'>À implémenter…</p></section>}

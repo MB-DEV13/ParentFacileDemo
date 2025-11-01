@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* Déclarer les couleurs comme tokens Tailwind v4 */
+@theme {
+  --color-pfBlueLight: #9ac8eb;
+  --color-pfBlue: #5784ba;
+  --color-pfPink: #f4cfdf;
+  --color-pfBlueSoft: #b6d8f2;
+  --color-pfYellow: #f7f6cf;
+}
+
+/* ====== Animations globales ====== */
+
+/* Page fade-in */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in { animation: none !important; opacity: 1; transform: none; }
+}
+
+/* Révélations au scroll (sections, cards…) */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .4s ease-out, transform .4s ease-out;
+  will-change: opacity, transform;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+  animation: reveal-up .4s ease-out both;
+  animation-delay: var(--delay, 0ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.in-view { opacity: 1; transform: none; animation: none; }
+}
+
+/* ====== Utilitaire global pour les cartes interactives ====== */
+@layer components {
+  .card-hover {
+    @apply rounded-xl border bg-white shadow-sm
+           motion-safe:transition motion-safe:duration-200
+           hover:shadow-md hover:-translate-y-0.5
+           focus-within:shadow-md focus-within:-translate-y-0.5;
+  }
+}
+
+
