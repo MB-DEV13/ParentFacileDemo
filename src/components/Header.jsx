@@ -1,10 +1,7 @@
 /**
  * Header (en-tête principal)
- * -------------------------------------------------
- * Version harmonisée avec la charte ParentFacile :
- * - Fond jaune pastel (pfYellow) au hover et sur page active
- * - Texte en gras au survol et sur page active
- * - Transitions douces cohérentes avec le footer
+ * - Burger < 1024px (≈ 1000px)
+ * - Menu desktop ≥ 1024px
  */
 
 import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
@@ -17,7 +14,6 @@ export default function Header() {
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
 
-  // Ferme le menu et réinitialise la recherche à chaque navigation
   useEffect(() => {
     setQ("");
     setOpen(false);
@@ -30,7 +26,6 @@ export default function Header() {
     setOpen(false);
   }
 
-  // Liens de navigation — réutilisables pour desktop & mobile
   const NavLinks = ({ onClick }) => (
     <>
       {[
@@ -61,11 +56,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 backdrop-blur bg-white/70 border-b border-slate-200">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
         {/* Logo + marque */}
-        <Link
-          to="/"
-          className="flex items-center gap-2"
-          aria-label="Accueil ParentFacile"
-        >
+        <Link to="/" className="flex items-center gap-2" aria-label="Accueil ParentFacile">
           <img
             src={logo}
             alt="ParentFacile"
@@ -74,21 +65,16 @@ export default function Header() {
             loading="eager"
             decoding="async"
           />
-          <span className="font-semibold tracking-wide text-lg">
-            ParentFacile
-          </span>
+          <span className="font-semibold tracking-wide text-lg">ParentFacile</span>
         </Link>
 
-        {/* Menu desktop */}
-        <nav className="ml-auto hidden md:flex items-center gap-2">
+        {/* Menu desktop (≥ 1024px) */}
+        <nav className="ml-auto hidden lg:flex items-center gap-2">
           <NavLinks />
         </nav>
 
-        {/* Recherche desktop */}
-        <form
-          onSubmit={onSubmit}
-          className="ml-auto md:ml-6 w-40 sm:w-56 hidden sm:block"
-        >
+        {/* Recherche desktop (≥ 1024px) */}
+        <form onSubmit={onSubmit} className="ml-auto lg:ml-6 w-40 sm:w-56 hidden lg:block">
           <div className="relative">
             <input
               value={q}
@@ -103,13 +89,7 @@ export default function Header() {
               aria-label="Lancer la recherche"
               title="Lancer la recherche"
             >
-              <svg
-                className="h-4 w-4 opacity-70"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
+              <svg className="h-4 w-4 opacity-70" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="7" />
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
@@ -117,44 +97,31 @@ export default function Header() {
           </div>
         </form>
 
-        {/* Burger menu (mobile) */}
+        {/* Burger menu (< 1024px) */}
         <button
           type="button"
-          className="ml-auto inline-flex md:hidden items-center justify-center h-10 w-10 rounded-lg border border-slate-300 hover:bg-white/70 transition-colors"
+          className="ml-auto inline-flex lg:hidden items-center justify-center h-10 w-10 rounded-lg border border-slate-300 hover:bg-white/70 transition-colors"
           aria-label="Ouvrir le menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
           {!open ? (
-            <svg
-              className="h-6 w-6"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              fill="none"
-              strokeWidth="2"
-            >
+            <svg className="h-6 w-6" viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="2">
               <path d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           ) : (
-            <svg
-              className="h-6 w-6"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              fill="none"
-              strokeWidth="2"
-            >
+            <svg className="h-6 w-6" viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="2">
               <path d="M6 6l12 12M18 6l-12 12" />
             </svg>
           )}
         </button>
       </div>
 
-      {/* Drawer mobile */}
+      {/* Drawer mobile / tablet (< 1024px) */}
       {open && (
-        <div className="md:hidden fixed inset-0 z-[60]" aria-hidden={!open}>
+        <div className="lg:hidden fixed inset-0 z-[60]" aria-hidden={!open}>
           {/* overlay */}
           <div className="absolute inset-0 bg-black/10" onClick={() => setOpen(false)} />
-
           {/* panneau */}
           <div className="absolute right-0 top-0 h-full w-[85%] max-w-xs bg-white shadow-xl border-l border-slate-200">
             <div className="p-3.5 border-b flex items-center justify-between">
@@ -164,13 +131,7 @@ export default function Header() {
                 aria-label="Fermer le menu"
                 onClick={() => setOpen(false)}
               >
-                <svg
-                  className="h-5 w-5"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  fill="none"
-                  strokeWidth="2"
-                >
+                <svg className="h-5 w-5" viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="2">
                   <path d="M6 6l12 12M18 6l-12 12" />
                 </svg>
               </button>
@@ -192,13 +153,7 @@ export default function Header() {
                   aria-label="Lancer la recherche"
                   title="Lancer la recherche"
                 >
-                  <svg
-                    className="h-4 w-4 opacity-70"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
+                  <svg className="h-4 w-4 opacity-70" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="11" cy="11" r="7" />
                     <line x1="21" y1="21" x2="16.65" y2="16.65" />
                   </svg>
@@ -236,5 +191,3 @@ export default function Header() {
     </header>
   );
 }
-
-
